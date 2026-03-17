@@ -1,0 +1,6 @@
+argocd:
+  version: 9.4.12
+localstack:
+  version: 0.7.0
+crossplane: 
+  version: 2.2.0
