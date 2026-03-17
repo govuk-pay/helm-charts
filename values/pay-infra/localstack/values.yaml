@@ -4,9 +4,5 @@ image:
 
 service:
   type: ClusterIP
-
-extraEnvVars:
-- name: LOCALSTACK_HOST
-  value: localstack.localstack.svc.cluster.local:4566
-- name: SQS_ENDPOINT_STRATEGY
-  value: dynamic
+  dnsService:
+    enabled: true
