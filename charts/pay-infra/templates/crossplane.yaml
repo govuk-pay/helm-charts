@@ -25,7 +25,7 @@ spec:
   - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
     ref: repo
   - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
-    path: crossplane
+    path: charts/crossplane
   destination:
     server: "https://kubernetes.default.svc"
     namespace: crossplane
