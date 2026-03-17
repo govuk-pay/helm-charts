@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: pay-infra
-  namespace: argocd
+  namespace: pay-infra
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: pay-infra
   syncPolicy:
     automated:
       enabled: true

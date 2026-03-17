@@ -1,0 +1,8 @@
+kind: AppProject
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: pay-infra
+  namespace: argocd
+spec:
+  sourceNamespaces:
+  - pay-infra

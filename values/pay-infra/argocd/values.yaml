@@ -1,3 +1,7 @@
 redis:
   image:
     repository: redis
+
+configs:
+  params:
+    application.namespaces: "*"
