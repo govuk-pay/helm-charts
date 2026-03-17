@@ -1,0 +1,43 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane
+  namespace: pay-infra
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: pay-infra
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  sources:
+  - repoURL: https://charts.crossplane.io/stable
+    targetRevision: {{ .Values.crossplane.version }}
+    chart: crossplane
+    helm:
+      valueFiles:
+      - $repo/values/pay-infra/crossplane/values.yaml
+  - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
+    ref: repo
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: crossplane
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: upbound-provider-aws-sqs
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-sqs
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: upbound-provider-aws-sns
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-sns
