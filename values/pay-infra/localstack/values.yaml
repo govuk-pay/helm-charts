@@ -1,3 +1,10 @@
 image:
   repository: localstack/localstack
   tag: 4.14.0
+
+service:
+  type: ClusterIP
+
+extraEnvVars:
+- name: LOCALSTACK_HOST
+  value: localstack.localstack.svc.cluster.local:4566
