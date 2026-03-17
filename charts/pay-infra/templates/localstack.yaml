@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: localstack
   namespace: pay-infra
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.localstack.argoproj.io
 spec:
   project: default
   syncPolicy:
@@ -15,14 +15,14 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
   sources:
-  - repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: {{ .Values.argocd.version }}
+  - repoURL: https://localstack.github.io/helm-charts
+    targetRevision: {{ .Values.localstack.version }}
     chart: argo-cd
     helm:
       valueFiles:
-      - $repo/values/pay-infra/argocd/values.yaml
+      - $repo/values/pay-infra/localstack/values.yaml
   - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
     ref: repo
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: argocd
+    namespace: localstack
