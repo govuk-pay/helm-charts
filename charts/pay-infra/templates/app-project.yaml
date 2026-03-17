@@ -4,10 +4,16 @@ metadata:
   name: pay-infra
   namespace: argocd
 spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
   destinations:
   - name: '*'
     namespace: '*'
     server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   sourceNamespaces:
   - pay-infra
   sourceRepos:
