@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pay-infra
+  name: argocd
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -15,8 +15,14 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
   sources:
-  - repoURL: https://github.com/govuk-pay/helm-charts.git
-    path: charts/pay-infra
+  - repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: {{ .Values.argocd.version }}
+    chart: argo-cd
+    helm:
+      valueFiles:
+      - $repo/values/pay-infra/argocd/values.yaml
+  - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
+    ref: repo
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: pay-infra
+    namespace: argocd
