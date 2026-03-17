@@ -4,7 +4,7 @@ metadata:
   name: localstack
   namespace: pay-infra
   finalizers:
-  - resources-finalizer.localstack.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   syncPolicy:
