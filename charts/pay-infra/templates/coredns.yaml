@@ -33,5 +33,5 @@ data:
         reload
         loadbalance
 
-        rrewrite name regex (.*).localhost.localstack.cloud localstack.localstack.svc.cluster.local answer auto
+        rewrite name regex (.*).localhost.localstack.cloud localstack.localstack.svc.cluster.local answer auto
     }
