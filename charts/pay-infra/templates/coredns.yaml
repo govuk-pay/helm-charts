@@ -32,8 +32,6 @@ data:
         loop
         reload
         loadbalance
-    }
 
-    localhost.localstack.cloud:53 {
-      forward . localstack.localstack.svc.cluster.local
+        rrewrite name regex (.*).localhost.localstack.cloud localstack.localstack.svc.cluster.local answer auto
     }
