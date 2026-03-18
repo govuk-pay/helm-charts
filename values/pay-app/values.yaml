@@ -1,4 +1,8 @@
 env:
+  BIND_HOST: 0.0.0.0
+  RUN_MIGRATION: 'true'
+  RUN_APP: 'true'
+  DISABLE_INTERNAL_HTTPS: 'true'
   http_proxy: http://egress:8080
   HTTP_PROXY: http://egress:8080
   https_proxy: http://egress:8080
@@ -13,3 +17,4 @@ env:
   HTTPS_PROXY_ENABLED: true
   HTTP_PROXY_SCHEME: http
   SECURE_COOKIE_OFF: true
+  JAVA_OPTS: -Xms128m -Xmx1G
