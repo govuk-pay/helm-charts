@@ -9,6 +9,8 @@ metadata:
 spec:
   forProvider:
     region: eu-west-2
+  writeConnectionSecretToRef:
+    name: card-payment-dispute-events-topic
 ---
 apiVersion: sns.aws.m.upbound.io/v1beta1
 kind: Topic
@@ -19,6 +21,8 @@ metadata:
 spec:
   forProvider:
     region: eu-west-2
+  writeConnectionSecretToRef:
+    name: card-payment-events-topic
 ---
 apiVersion: sns.aws.m.upbound.io/v1beta1
 kind: TopicSubscription
