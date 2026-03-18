@@ -1,7 +1,7 @@
 apiVersion: sqs.aws.m.upbound.io/v1beta1
 kind: Queue
 metadata:
-  name: connector_tasks_queue
+  name: connector-tasks-queue
   labels:
     {{- include "pay-cluster.labels" . | nindent 4 }}
 spec:
@@ -12,4 +12,4 @@ spec:
     receiveWaitTimeSeconds: 0
     region: eu-west-2
   writeConnectionSecretToRef:
-    name: connector_tasks_queue
+    name: connector-tasks-queue
