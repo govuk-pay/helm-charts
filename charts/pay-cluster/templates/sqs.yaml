@@ -12,7 +12,7 @@ spec:
     visibilityTimeoutSeconds: 3600
     name: '{{ include "pay-cluster.fullname" . }}-connector_tasks_queue'
     receiveWaitTimeSeconds: 0
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: connector-tasks-queue
 ---
@@ -28,7 +28,7 @@ spec:
     visibilityTimeoutSeconds: 3600
     name: '{{ include "pay-cluster.fullname" . }}-pay_capture_queue'
     receiveWaitTimeSeconds: 0
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: pay-capture-queue
 ---
@@ -44,7 +44,7 @@ spec:
     visibilityTimeoutSeconds: 3600
     name: '{{ include "pay-cluster.fullname" . }}-pay_event_queue'
     receiveWaitTimeSeconds: 0
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: pay-event-queue
 ---
@@ -60,7 +60,7 @@ spec:
     visibilityTimeoutSeconds: 3600
     name: '{{ include "pay-cluster.fullname" . }}-payout_reconcile_queue'
     receiveWaitTimeSeconds: 0
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: payout-reconcile-queue
 ---
@@ -76,7 +76,7 @@ spec:
     visibilityTimeoutSeconds: 3600
     name: '{{ include "pay-cluster.fullname" . }}-webhooks-events-subscriber-queue'
     receiveWaitTimeSeconds: 0
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: webhooks-events-subscriber-queue
 {{- end }}

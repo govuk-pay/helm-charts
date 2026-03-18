@@ -1,5 +1,5 @@
 image:
-  repository: governmentdigitalservice/pay-adminusers
+  repository: 223851549868.dkr.ecr.eu-west-1.amazonaws.com/govukpay/adminusers
   tag: latest
 
 port: 9700

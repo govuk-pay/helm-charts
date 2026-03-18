@@ -8,7 +8,7 @@ metadata:
     {{- include "pay-cluster.labels" . | nindent 4 }}
 spec:
   forProvider:
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: card-payment-dispute-events-topic
 ---
@@ -20,7 +20,7 @@ metadata:
     {{- include "pay-cluster.labels" . | nindent 4 }}
 spec:
   forProvider:
-    region: eu-west-2
+    region: eu-west-1
   writeConnectionSecretToRef:
     name: card-payment-events-topic
 ---
@@ -32,7 +32,7 @@ metadata:
     {{- include "pay-cluster.labels" . | nindent 4 }}
 spec:
   forProvider:
-    region: eu-west-2
+    region: eu-west-1
     protocol: sqs
     endpointRef:
       name: webhooks-events-subscriber-queue
@@ -47,7 +47,7 @@ metadata:
     {{- include "pay-cluster.labels" . | nindent 4 }}
 spec:
   forProvider:
-    region: eu-west-2
+    region: eu-west-1
     protocol: sqs
     endpointRef:
       name: webhooks-events-subscriber-queue

@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ include "pay-cluster.fullname" . }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  labels:
+    {{- include "pay-cluster.labels" . | nindent 4 }}
+spec:
+  project: 'pay-{{ .Values.environment }}'
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  sources:
+  - repoURL: https://github.com/govuk-pay/helm-charts.git
+    path: charts/pay-cluster
+    helm:
+      ignoreMissingValueFiles: true
+      valueFiles:
+      - $repo/values/pay-app/values.yaml
+      - $repo/values/pay-app/values.{{ .Values.environmet }}.yaml
+      - $repo/values/pay-app/adminusers/values.yaml
+      - $repo/values/pay-app/adminusers/values.{{ .Values.environmet }}.yaml
+  - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
+    ref: repo
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: {{ include "pay-cluster.fullname" . }}
