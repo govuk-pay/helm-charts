@@ -4,5 +4,5 @@ localstack:
   version: 0.7.0
 crossplane: 
   version: 2.2.0
-cloudnative-pg:
+cloudnativepg:
   version: 0.27.0
