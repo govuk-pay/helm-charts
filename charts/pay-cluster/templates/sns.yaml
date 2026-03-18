@@ -1,0 +1,52 @@
+{{- if .Values.useCrossplane }}
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: Topic
+metadata:
+  name: card-payment-dispute-events-topic
+  labels:
+    {{- include "pay-cluster.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: eu-west-2
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: Topic
+metadata:
+  name: card-payment-events-topic
+  labels:
+    {{- include "pay-cluster.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: eu-west-2
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: TopicSubscription
+metadata:
+  name: card-payment-dispute-events-topic
+  labels:
+    {{- include "pay-cluster.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: eu-west-2
+    protocol: sqs
+    endpointRef:
+      name: webhooks-events-subscriber-queue
+    topicArnRef:
+      name: card-payment-dispute-events-topic
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: TopicSubscription
+metadata:
+  name: card-payment-events-topic
+  labels:
+    {{- include "pay-cluster.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: eu-west-2
+    protocol: sqs
+    endpointRef:
+      name: webhooks-events-subscriber-queue
+    topicArnRef:
+      name: card-payment-events-topic
+{{- end }}
