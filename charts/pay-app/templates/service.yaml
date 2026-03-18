@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "pay-app.fullname" . }}
+  labels:
+    {{- include "pay-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+      protocol: TCP
+      name: port
+    {{- if .Values.adminPort }}
+    - port: {{ .Values.adminPort }}
+      targetPort: {{ .Values.adminPort }}
+      protocol: TCP
+      name: adminport
+    {{- end }}
+  selector:
+    {{- include "pay-app.selectorLabels" . | nindent 4 }}
