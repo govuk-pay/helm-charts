@@ -17,7 +17,7 @@ spec:
     - ServerSideApply=true
   sources:
   - repoURL: https://github.com/govuk-pay/helm-charts.git
-    path: charts/pay-cluster
+    path: charts/pay-app
     helm:
       ignoreMissingValueFiles: true
       valueFiles:
