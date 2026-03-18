@@ -16,7 +16,7 @@ spec:
   - group: '*'
     kind: '*'
   sourceNamespaces:
-  - 'pay-{{ .Values.environment}}-*'
-  - 'pay-{{ .Values.environment}}'
+  - 'pay-{{ .Values.environment }}-*'
+  - 'pay-{{ .Values.environment }}'
   sourceRepos:
   - '*'
