@@ -22,9 +22,9 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - $repo/values/pay-app/values.yaml
-      - $repo/values/pay-app/values.{{ .Values.environmet }}.yaml
+      - $repo/values/pay-app/values.{{ .Values.environment }}.yaml
       - $repo/values/pay-app/adminusers/values.yaml
-      - $repo/values/pay-app/adminusers/values.{{ .Values.environmet }}.yaml
+      - $repo/values/pay-app/adminusers/values.{{ .Values.environment }}.yaml
   - repoURL: 'https://github.com/govuk-pay/helm-charts.git'
     ref: repo
   destination:
