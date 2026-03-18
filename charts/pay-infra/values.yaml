@@ -1,3 +1,5 @@
+environment: local
+
 argocd:
   version: 9.4.12
 localstack:

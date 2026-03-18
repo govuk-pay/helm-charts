@@ -1,0 +1,22 @@
+---
+kind: AppProject
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: 'pay-{{ .Values.environment }}'
+  namespace: argocd
+spec:
+  destinations:
+  - name: '*'
+    namespace: 'pay-{{ .Values.environment }}-*'
+    server: '*'
+  - name: '*'
+    namespace: 'pay-{{ .Values.environment }}'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceNamespaces:
+  - 'pay-{{ .Values.environment}}-*'
+  - 'pay-{{ .Values.environment}}'
+  sourceRepos:
+  - '*'
