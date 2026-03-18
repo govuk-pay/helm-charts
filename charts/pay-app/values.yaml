@@ -166,3 +166,4 @@ port: 80
 
 useCrossplane: false
 useCloudnativePG: false
+useRegistryCreds: false

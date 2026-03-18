@@ -1,0 +1,42 @@
+image:
+  repository: governmentdigitalservice/pay-adminusers
+  tag: latest
+
+port: 9700
+adminPort: 9701
+
+env:
+  PORT: 9700
+  ADMIN_PORT: 9701
+
+  JPA_LOG_LEVEL: WARNING
+  JPA_SQL_LOG_LEVEL: WARNING
+  LOGIN_ATTEMPT_CAP: 2
+
+  LEDGER_URL: http://ledger:10700
+
+  NOTIFY_SERVICE_ID: pay-notify-service-id
+  NOTIFY_SECRET: pay-notify-secret-needs-to-be-32-chars-fsghdngfhmhfkrgsfs
+  NOTIFY_API_KEY: api_key-pay-notify-service-id-pay-notify-secret-needs-to-be-32-chars-fsghdngfhmhfkrgsfs
+  NOTIFY_SIGN_IN_OTP_SMS_TEMPLATE_ID: pay-notify-sign-in-otp-sms-template-id
+  NOTIFY_CHANGE_SIGN_IN_2FA_TO_SMS_OTP_SMS_TEMPLATE_ID: pay-notify-change-sign-in-2fa-to-sms-otp-sms-template-id
+  NOTIFY_SELF_INITIATED_CREATE_USER_AND_SERVICE_OTP_SMS_TEMPLATE_ID: pay-notify-self-initiated-create-user-and-service-otp-sms-template-id
+  NOTIFY_CREATE_USER_IN_RESPONSE_TO_INVITATION_TO_SERVICE_OTP_SMS_TEMPLATE_ID: pay-notify-create-user-in-response-to-invitation-to-service-otp-sms-template-id
+  NOTIFY_INVITE_EMAIL_TEMPLATE_ID: pay-notify-invite-email-template-id
+  NOTIFY_INVITE_USER_EMAIL_TEMPLATE_ID: pay-notify-invite-user-email-template-id
+  NOTIFY_FORGOTTEN_PASSWORD_EMAIL_TEMPLATE_ID: pay-notify-forgotten-password-email-template-id
+  NOTIFY_BASE_URL: http://stubs:3030/notify
+  NOTIFY_INVITE_SERVICE_EMAIL_TEMPLATE_ID: pay-notify-invite-service-email-template-id
+  NOTIFY_INVITE_SERVICE_USER_EXITS_EMAIL_TEMPLATE_ID: pay-notify-invite-service-user-exists-email-template-id
+  NOTIFY_LIVE_ACCOUNT_CREATED_EMAIL_TEMPLATE_ID: pay-notify-live-account-created-email-template-id
+  NOTIFY_DISPUTE_CREATED_EMAIL_TEMPLATE_ID: pay-notify-dispute-created-email-template-id
+  NOTIFY_STRIPE_DISPUTE_CREATED_EMAIL_TEMPLATE_ID: pay-notify-dispute-created-email-template-id
+  NOTIFY_STRIPE_DISPUTE_EVIDENCE_SUBMITTED_EMAIL_TEMPLATE_ID: pay-notify-dispute-evidence-submitted-template-id
+  NOTIFY_STRIPE_DISPUTE_LOST_EMAIL_TEMPLATE_ID: pay-notify-stripe-dispute-lost-email-template-id
+  NOTIFY_STRIPE_DISPUTE_LOST_AND_SERVICE_CHARGED_EMAIL_TEMPLATE_ID: pay-notify-stripe-dispute-lost-andservice-charged-email-template-id
+  NOTIFY_STRIPE_DISPUTE_WON_EMAIL_TEMPLATE_ID: pay-notify-stripe-dispute-won-email-template-id
+  NOTIFY_EMAIL_REPLY_TO_SUPPORT_ID: pay-notify-email-reply-to-support-id
+
+  FORGOTTEN_PASSWORD_EXPIRY_MINUTES: 90
+
+  EXPUNGE_AND_ARCHIVE_HISTORICAL_DATA_ENABLED: true
