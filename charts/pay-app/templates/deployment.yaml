@@ -73,7 +73,7 @@ spec:
                 name: {{ include "pay-app.fullname" . }}-db-app
                 key: password
           - name: DB_SSL_OPTION
-            value: ssl=none&ssl_mode=disable
+            value: ssl=false&sslmode=disable
           {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
