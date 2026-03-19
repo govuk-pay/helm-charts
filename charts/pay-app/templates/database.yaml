@@ -20,6 +20,8 @@ spec:
     name: {{ include "pay-app.fullname" . }}-db
   extensions:
   - name: uuid-ossp
+    ensure: present
   - name: pg_trgm
     schema: pg_catalog
+    ensure: present
 {{- end }}
