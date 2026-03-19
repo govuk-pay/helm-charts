@@ -9,10 +9,11 @@ spec:
     initdb:
       database: {{ include "pay-app.fullname" . }}
       owner: {{ include "pay-app.fullname" . }}
-  extensions:
-  - name: uuid-ossp
-  - name: pg_trgm
-    schema: pg_catalog
+  postgresql:
+    extensions:
+    - name: uuid-ossp
+    - name: pg_trgm
+      schema: pg_catalog
   storage:
     size: 1Gi
 {{- end }}
