@@ -62,9 +62,9 @@ spec:
                 key: host
           - name: DB_USER
             valueFrom:
-            secretKeyRef:
-                name: {{ include "pay-app.fullname" . }}-db-app
-                key: username
+              secretKeyRef:
+                  name: {{ include "pay-app.fullname" . }}-db-app
+                  key: username
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
