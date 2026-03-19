@@ -15,7 +15,7 @@ metadata:
   name: {{ include "pay-app.fullname" . }}
 spec:
   name: {{ include "pay-app.fullname" . }}
-  owner: {{ include "pay-app.fullname" . }}
+  owner: app
   cluster:
     name: {{ include "pay-app.fullname" . }}-db
   extensions:
