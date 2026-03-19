@@ -88,10 +88,23 @@ spec:
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
+            {{- if .Values.deployDatabase }}
+              - name: postgres-ca
+                # note - we need change extension to crt here
+                mountPath: /certificates/postgres.crt
+                subPath: ca.crt
+                readOnly: false
+            {{- end }}
           {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
+        - name: postgres-ca
+          secret:
+            secretName: {{ include "pay-app.fullname" . }}-db-ca
+            items:
+            - key: ca.crt
+              path: ca.crt
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
