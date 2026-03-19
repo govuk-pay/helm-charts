@@ -1,0 +1,14 @@
+{{- if .Values.deployDatabase }}
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ include "pay-app.fullname" . }}-db
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: {{ include "pay-app.fullname" . }}
+      owner: {{ include "pay-app.fullname" . }}
+  storage:
+    size: 1Gi
+{{- end }}

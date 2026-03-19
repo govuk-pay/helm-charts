@@ -126,11 +126,11 @@ resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
-    path: /
+    path: /healthcheck
     port: http
 readinessProbe:
   httpGet:
-    path: /
+    path: /healthcheck
     port: http
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
@@ -165,5 +165,4 @@ envVars: {}
 port: 80
 
 useCrossplane: false
-useCloudnativePG: false
-useRegistryCreds: false
+deployDatabase: false

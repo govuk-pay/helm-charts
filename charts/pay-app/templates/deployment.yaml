@@ -41,7 +41,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: port
+            - name: http
               containerPort: {{ .Values.port }}
               protocol: TCP
             {{- if .Values.adminPort }}
@@ -53,6 +53,23 @@ spec:
           {{- range $key, $val := .Values.env }}
           - name: {{ $key }}
             value: {{ $val | quote }}
+          {{- end }}
+          {{- if .Values.deployDatabase }}
+          - name: DB_HOST
+            valueFrom:
+            secretKeyRef:
+              name: {{ include "pay-app.fullname" . }}-db-app
+              key: host
+          - name: DB_USER
+            valueFrom:
+            secretKeyRef:
+              name: {{ include "pay-app.fullname" . }}-db-app
+              key: username
+          - name: DB_PASSWORD
+            valueFrom:
+            secretKeyRef:
+              name: {{ include "pay-app.fullname" . }}-db-app
+              key: password
           {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
