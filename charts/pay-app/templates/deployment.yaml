@@ -70,6 +70,8 @@ spec:
               secretKeyRef:
                 name: {{ include "pay-app.fullname" . }}-db-app
                 key: password
+          - name: DB_SSL_OPTION
+            value: ssl=none
           {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
