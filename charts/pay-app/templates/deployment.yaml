@@ -57,19 +57,19 @@ spec:
           {{- if .Values.deployDatabase }}
           - name: DB_HOST
             valueFrom:
-            secretKeyRef:
-              name: {{ include "pay-app.fullname" . }}-db-app
-              key: host
+              secretKeyRef:
+                name: {{ include "pay-app.fullname" . }}-db-app
+                key: host
           - name: DB_USER
             valueFrom:
             secretKeyRef:
-              name: {{ include "pay-app.fullname" . }}-db-app
-              key: username
+                name: {{ include "pay-app.fullname" . }}-db-app
+                key: username
           - name: DB_PASSWORD
             valueFrom:
-            secretKeyRef:
-              name: {{ include "pay-app.fullname" . }}-db-app
-              key: password
+              secretKeyRef:
+                name: {{ include "pay-app.fullname" . }}-db-app
+                key: password
           {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
