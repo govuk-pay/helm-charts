@@ -165,4 +165,5 @@ envVars: {}
 port: 80
 
 useCrossplane: false
+useLocalstack: false
 deployDatabase: false

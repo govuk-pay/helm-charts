@@ -75,6 +75,42 @@ spec:
           - name: DB_SSL_OPTION
             value: ssl=false&sslmode=disable
           {{- end }}
+          {{- if .Values.useLocalstack }}
+          - name: AWS_SQS_REGION
+            value: eu-west-1
+          - name: AWS_SQS_MESSAGE_MAXIMUM_WAIT_TIME_IN_SECONDS
+            value: '20'
+          - name: AWS_SQS_NON_STANDARD_SERVICE_ENDPOINT
+            value: 'true'
+          - name: AWS_SQS_ENDPOINT
+            value: 'http://localstack.localstack.svc.cluster.local.:4566'
+          - name: AWS_SNS_NON_STANDARD_SERVICE_ENDPOINT
+            value: 'true'
+          - name: AWS_SNS_ENDPOINT
+            value: 'http://localstack.localstack.svc.cluster.local.:4566'
+          {{- end }}
+          {{- if .Values.useCrossplane }}
+          - name: AWS_SQS_CONNECTOR_TASKS_QUEUE_URL
+            valueFrom:
+              secretKeyRef:
+                name: connector-tasks-queue
+                key: url
+          - name: AWS_SQS_PAY_CAPTURE_QUEUE_URL
+            valueFrom:
+              secretKeyRef:
+                name: pay-capture-queue
+                key: url
+          - name: AWS_SQS_PAY_EVENT_QUEUE_URL
+            valueFrom:
+              secretKeyRef:
+                name: pay-event-queue
+                key: url
+          - name: AWS_SQS_PAYOUT_RECONCILE_QUEUE_URL
+            valueFrom:
+              secretKeyRef:
+                name: payout-reconcile-queue
+                key: url
+          {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

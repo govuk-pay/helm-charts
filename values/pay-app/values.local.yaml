@@ -2,4 +2,5 @@ imagePullSecrets:
 - name: awsecr
 
 useCrossplane: true
+useLocalstack: true
 deployDatabase: true
