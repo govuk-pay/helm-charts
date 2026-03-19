@@ -54,6 +54,8 @@ spec:
           - name: {{ $key }}
             value: {{ $val | quote }}
           {{- end }}
+          - name: USE_SYSTEM_CA_CERTS
+            value: 1
           {{- if .Values.deployDatabase }}
           - name: DB_HOST
             valueFrom:
