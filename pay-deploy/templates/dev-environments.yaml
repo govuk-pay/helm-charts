@@ -22,7 +22,7 @@ spec:
         targetRevision: HEAD
         path: pay-environment
         helm:
-          values:
+          valuesObject:
             repoURL: https://github.com/govuk-pay/dev-environments.git
             environment: '{{`{{ .path.basename }}`}}'
       destination:

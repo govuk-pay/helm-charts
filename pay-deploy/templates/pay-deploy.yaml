@@ -8,7 +8,7 @@ spec:
   source:
       repoURL: https://github.com/govuk-pay/helm-charts.git
       targetRevision: HEAD
-      path: pay-environment
+      path: pay-deploy
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
