@@ -23,10 +23,12 @@ stringData:
     aws_access_key_id = test
     aws_secret_access_key = test
 ---
-apiVersion: aws.upbound.io/v1beta1
+apiVersion: aws.m.upbound.io/v1beta1
 kind: ClusterProviderConfig
 metadata:
   name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   credentials:
     source: Secret
