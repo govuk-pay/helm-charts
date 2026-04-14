@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: 'pay-{{ .Values.environment }}'
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: '{{ .Values.repoURL }}'
+      revision: HEAD
+      directories:
+      - path: '{{ .Values.environment }}/*'
+  template:
+    metadata:
+      name: 'pay-{{ .Values.environment }}-{{`{{ .path.basename }}`}}'
+    spec:
+      project: default
+      sources:
+      - repoURL: https://github.com/govuk-pay/helm-charts.git
+        targetRevision: HEAD
+        path: pay-app
+        helm:
+          valueFiles:
+          - $config/common/global.yaml
+          - $config/common/{{`{{ .path.basename }}`}}/values.yaml
+          - $values/{{ .Values.environment }}/global.yaml
+          - $values/{{ .Values.environment }}/{{`{{ .path.basename }}`}}/values.yaml
+        ignoreMissingValueFiles: true
+      - repoURL: https://github.com/govuk-pay/environment-config.git
+        targetRevision: HEAD
+        ref: config
+      - repoURL: '{{ .Values.repoURL }}'
+        targetRevision: HEAD
+        ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
