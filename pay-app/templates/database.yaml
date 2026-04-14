@@ -1,0 +1,27 @@
+{{- if .Values.deployDatabase }}
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ include "pay-app.fullname" . }}-db
+spec:
+  instances: 1
+  storage:
+    size: 1Gi
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: {{ include "pay-app.fullname" . }}
+spec:
+  name: {{ include "pay-app.fullname" . }}
+  owner: app
+  cluster:
+    name: {{ include "pay-app.fullname" . }}-db
+  extensions:
+  - name: uuid-ossp
+    ensure: present
+  - name: pg_trgm
+    schema: pg_catalog
+    ensure: present
+{{- end }}
