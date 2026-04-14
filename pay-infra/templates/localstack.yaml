@@ -12,7 +12,7 @@ spec:
       helm:
         valuesObject:
           image:
-            repository: localstack/locakstack
+            repository: localstack/localstack
             tag: 4.14.0
   destination:
     server: "https://kubernetes.default.svc"
