@@ -1,0 +1,46 @@
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: Topic
+metadata:
+  annotations:
+    crossplane.io/external-name: '{{ .Values.environment }}-card-payment-dispute-events-topic'
+  name: card-payment-dispute-events-topic
+spec:
+  forProvider:
+    region: eu-west-1
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: Topic
+metadata:
+  annotations:
+    crossplane.io/external-name: '{{ .Values.environment }}-card-payment-events-topic'
+  name: card-payment-events-topic
+spec:
+  forProvider:
+    region: eu-west-1
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: TopicSubscription
+metadata:
+  name: card-payment-dispute-events-topic
+spec:
+  forProvider:
+    protocol: sqs
+    region: eu-west-1
+    endpointRef:
+      name: webhooks-events-subscriber-queue
+    topicArnRef:
+      name: card-payment-dispute-events-topic
+---
+apiVersion: sns.aws.m.upbound.io/v1beta1
+kind: TopicSubscription
+metadata:
+  name: card-payment-dispute-events-topic
+spec:
+  forProvider:
+    protocol: sqs
+    region: eu-west-1
+    endpointRef:
+      name: webhooks-events-subscriber-queue
+    topicArnRef:
+      name: card-payment-events-topic

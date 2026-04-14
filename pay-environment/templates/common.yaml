@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'pay-{{ .Values.environment }}-common'
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/govuk-pay/helm-charts.git
+    targetRevision: HEAD
+    path: pay-environment-common
+    helm:
+      valuesObject:
+        environment: '{{ .Values.environment }}'
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: '{{ .Values.environment }}'
+  syncPolicy:
+    automated:
+      enabled: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

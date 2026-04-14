@@ -1,0 +1,70 @@
+---
+apiVersion: sqs.aws.m.upbound.io/v1beta1
+kind: Queue
+metadata:
+  name: connector-tasks-queue
+spec:
+  forProvider:
+    delaySeconds: 0
+    visibilityTimeoutSeconds: 3600
+    name: '{{ .Values.environment}}-connector_tasks_queue'
+    receiveWaitTimeSeconds: 0
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: connector-tasks-queue
+---
+apiVersion: sqs.aws.m.upbound.io/v1beta1
+kind: Queue
+metadata:
+  name: pay-capture-queue
+spec:
+  forProvider:
+    delaySeconds: 0
+    visibilityTimeoutSeconds: 3600
+    name: '{{ .Values.environment}}-pay_capture_queue'
+    receiveWaitTimeSeconds: 0
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: pay-capture-queue
+---
+apiVersion: sqs.aws.m.upbound.io/v1beta1
+kind: Queue
+metadata:
+  name: pay-event-queue
+spec:
+  forProvider:
+    delaySeconds: 0
+    visibilityTimeoutSeconds: 3600
+    name: '{{ .Values.environment}}-pay_event_queue'
+    receiveWaitTimeSeconds: 0
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: pay-event-queue
+---
+apiVersion: sqs.aws.m.upbound.io/v1beta1
+kind: Queue
+metadata:
+  name: payout-reconcile-queue
+spec:
+  forProvider:
+    delaySeconds: 0
+    visibilityTimeoutSeconds: 3600
+    name: '{{ .Values.environment}}-payout_reconcile_queue'
+    receiveWaitTimeSeconds: 0
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: payout-reconcile-queue
+---
+apiVersion: sqs.aws.m.upbound.io/v1beta1
+kind: Queue
+metadata:
+  name: webhooks-events-subscriber-queue
+spec:
+  forProvider:
+    delaySeconds: 0
+    visibilityTimeoutSeconds: 3600
+    name: '{{ .Values.environment}}-webhooks-events-subscriber-queue'
+    receiveWaitTimeSeconds: 0
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: webhooks-events-subscriber-queue
