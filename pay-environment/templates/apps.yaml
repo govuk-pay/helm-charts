@@ -27,6 +27,7 @@ spec:
           - $config/common/{{`{{ .path.basename }}`}}/values.yaml
           - $values/{{ .Values.environment }}/global.yaml
           - $values/{{ .Values.environment }}/{{`{{ .path.basename }}`}}/values.yaml
+          releaseName: '{{`{{ .path.basename }}`}}'
           ignoreMissingValueFiles: true
       - repoURL: https://github.com/govuk-pay/environment-config.git
         targetRevision: HEAD
@@ -36,7 +37,7 @@ spec:
         ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: argocd
+        namespace: '{{ .Values.environment }}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
