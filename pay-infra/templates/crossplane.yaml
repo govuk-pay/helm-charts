@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnative-pg
+  name: crossplane
   namespace: argocd
 spec:
   project: default
   source:
-      repoURL: https://cloudnative-pg.github.io/charts
-      targetRevision: 0.28.0
-      chart: cloudnative-pg
+      repoURL: https://charts.crossplane.io/stable
+      targetRevision: 2.2.0
+      chart: crossplane
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: cloudnative-pg
+    namespace: crossplane
   syncPolicy:
     automated:
       enabled: true

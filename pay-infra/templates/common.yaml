@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnative-pg
+  name: pay-infra-common
   namespace: argocd
 spec:
   project: default
   source:
-      repoURL: https://cloudnative-pg.github.io/charts
-      targetRevision: 0.28.0
-      chart: cloudnative-pg
+      repoURL: https://github.com/govuk-pay/helm-charts.git
+      targetRevision: HEAD
+      path: pay-infra-common
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: cloudnative-pg
+    namespace: pay-infra
   syncPolicy:
     automated:
       enabled: true

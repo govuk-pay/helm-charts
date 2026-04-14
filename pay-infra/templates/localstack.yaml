@@ -1,17 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnative-pg
+  name: localstack
   namespace: argocd
 spec:
   project: default
   source:
-      repoURL: https://cloudnative-pg.github.io/charts
-      targetRevision: 0.28.0
-      chart: cloudnative-pg
+      repoURL: https://localstack.github.io/helm-charts
+      targetRevision: 0.7.0
+      chart: localstack
+      helm:
+        valuesObject:
+          image:
+            repository: localstack/locakstack
+            tag: 4.14.0
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: cloudnative-pg
+    namespace: localstack
   syncPolicy:
     automated:
       enabled: true
