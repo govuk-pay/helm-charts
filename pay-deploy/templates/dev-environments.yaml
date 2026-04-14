@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-environments
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/govuk-pay/dev-environments.git
+      revision: HEAD
+      directories:
+      - path: '*'
+  template:
+    metadata:
+      name: 'pay-dev-{{`{{ .path.basename }}`}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/govuk-pay/helm-charts.git
+        targetRevision: HEAD
+        path: pay-environment
+        helm:
+          values:
+            repoURL: https://github.com/govuk-pay/dev-environments.git
+            environment: '{{`{{ .path.basename }}`}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true

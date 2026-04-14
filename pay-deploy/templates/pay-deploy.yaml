@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pay-deploy
+  namespace: argocd
+spec:
+  project: default
+  source:
+      repoURL: https://github.com/govuk-pay/helm-charts.git
+      targetRevision: HEAD
+      path: pay-environment
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
