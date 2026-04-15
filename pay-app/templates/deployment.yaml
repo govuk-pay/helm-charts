@@ -118,12 +118,12 @@ spec:
               secretKeyRef:
                 name: connector-tasks-queue
                 key: url
-          - name: AWS_SQS_PAY_CAPTURE_QUEUE_URL
+          - name: AWS_SQS_CAPTURE_QUEUE_URL
             valueFrom:
               secretKeyRef:
                 name: pay-capture-queue
                 key: url
-          - name: AWS_SQS_PAY_EVENT_QUEUE_URL
+          - name: AWS_SQS_PAYMENT_EVENT_QUEUE_URL
             valueFrom:
               secretKeyRef:
                 name: pay-event-queue
