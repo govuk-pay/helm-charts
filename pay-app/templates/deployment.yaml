@@ -106,11 +106,11 @@ spec:
           - name: AWS_SQS_NON_STANDARD_SERVICE_ENDPOINT
             value: 'true'
           - name: AWS_SQS_ENDPOINT
-            value: 'http://localstack.localstack.svc.cluster.local.:4566'
+            value: 'http://localstack.localstack.svc.cluster.local:4566'
           - name: AWS_SNS_NON_STANDARD_SERVICE_ENDPOINT
             value: 'true'
           - name: AWS_SNS_ENDPOINT
-            value: 'http://localstack.localstack.svc.cluster.local.:4566'
+            value: 'http://localstack.localstack.svc.cluster.local:4566'
           {{- end }}
           {{- if .Values.useCrossplane }}
           - name: AWS_SQS_CONNECTOR_TASKS_QUEUE_URL
